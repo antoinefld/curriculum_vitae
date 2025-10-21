@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function Introducing() {
   return (
     <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-      {/* Arrière-plan animé */}
+      {/* Arrière-plan */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1C] via-[#1B1F3B] to-[#0A0F1C]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00FFFF20,transparent_60%)] animate-pulse"></div>
       </div>
@@ -18,21 +18,23 @@ export default function Hero() {
           Antoine FILLAUDEAU
         </h1>
         <p className="mt-6 text-xl text-gray-300">
-          DevOps • Automation • Web Development
+          Étudiant en <b>5ᵉ année</b> à <b>Epitech</b> (2021–2026).
           <br />
-          Petite phrase présentative
+          <b>Erasmus</b> à Vytautas Magnus University, <b>Lituanie</b> (Aout 2024 - Juin 2025)
+          <br />
+          Je suis passionné par le  <b>développement web</b> et l’ <b>automatisation des workflows</b>.
         </p>
         <div className="mt-10">
           <a
-            href="#projects"
+            href="#skills_soft"
             className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-semibold rounded-full hover:scale-105 transition-transform"
           >
-            Explorer mes projets
+            Me découvrir
           </a>
         </div>
       </motion.div>
 
-      {/* Effet de particules */}
+      {/* Effet */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 animate-[spin_30s_linear_infinite] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
       </div>

@@ -2,25 +2,33 @@ import React from "react";
 import './App.css';
 import './index.css'
 
-import Hero from "./components/Hero";
+import Introducing from "./components/Introducing";
+import SkillsHard from "./components/Skills_hard";
+import SkillsSoft from "./components/Skills_soft";
 import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Skills_hard from "./components/Skills_hard";
-import Skills_soft from "./components/Skills_soft";
+import ExpPro from "./components/ProXP";
 
 function App() {
     return (
         <div className="snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
           <section className="snap-start min-h-screen bg-[#0A0F1C] flex items-center justify-center">
-            <Hero />
+            <Introducing />
           </section>
 
           <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
-            <Skills_hard/>
+            <SkillsSoft/>
           </section>
 
           <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
-            <Skills_soft/>
+            <ExpPro/>
+          </section>
+
+          <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
+            <SkillsHard/>
+          </section>
+
+          <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
+            <Projects/>
           </section>
         </div>
     );
