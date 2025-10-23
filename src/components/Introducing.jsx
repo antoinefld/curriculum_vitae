@@ -20,9 +20,9 @@ export default function Introducing() {
         <p className="mt-6 text-xl text-gray-300">
           Étudiant en <b>5ᵉ année</b> à <b>Epitech</b> Lyon (2021–2026).
           <br />
-          <b>Erasmus</b> à Vytautas Magnus University, <b>Lituanie</b> (Aout 2024 - Juin 2025)
+          <b>Erasmus</b> à Vytautas Magnus University, Kaunas, <b>Lituanie</b> (Aout 2024 - Juin 2025)
           <br />
-          Je suis passionné par le  <b>développement web</b> et l’ <b>automatisation des workflows</b>.
+          Je suis passionné par le  <b>développement web</b> et l’<b>automatisation des workflows</b>.
         </p>
         <div className="mt-10">
           <a

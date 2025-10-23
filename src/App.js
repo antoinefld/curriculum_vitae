@@ -11,7 +11,7 @@ import ExpPro from "./components/ProXP";
 function App() {
     return (
         <div className="snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
-          <section className="snap-start min-h-screen bg-[#0A0F1C] flex items-center justify-center">
+          <section className="snap-start min-h-screen bg-gradient-to-b from-[#0A0F1C] via-[#1B1F3B] to-[#0A0F1C] flex items-center justify-center">
             <Introducing />
           </section>
 

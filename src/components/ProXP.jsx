@@ -66,7 +66,7 @@ export default function Exp_Pro() {
       </motion.div>
 
 
-      <h2 className="text-4xl font-bold mb-4 py-2 mt-16 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+      <h2 className="text-4xl font-bold mb-4 py-2 mt-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
         • Auto-Entreprise (Mars 2024 - Juin 2024)
       </h2>
 
