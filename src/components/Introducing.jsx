@@ -18,7 +18,7 @@ export default function Introducing() {
           Antoine FILLAUDEAU
         </h1>
         <p className="mt-6 text-xl text-gray-300">
-          Étudiant en <b>5ᵉ année</b> à <b>Epitech</b> (2021–2026).
+          Étudiant en <b>5ᵉ année</b> à <b>Epitech</b> Lyon (2021–2026).
           <br />
           <b>Erasmus</b> à Vytautas Magnus University, <b>Lituanie</b> (Aout 2024 - Juin 2025)
           <br />
