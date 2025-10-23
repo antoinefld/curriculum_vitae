@@ -15,19 +15,19 @@ function App() {
             <Introducing />
           </section>
 
-          <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
+          <section className="snap-start min-h-screen bg-[#0B1225] flex items-center justify-center">
             <SkillsSoft/>
           </section>
 
-          <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
+          <section className="snap-start min-h-screen bg-[#0B1225] flex items-center justify-center">
             <ExpPro/>
           </section>
 
-          <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
+          <section className="snap-start min-h-screen bg-[#0B1225] flex items-center justify-center">
             <SkillsHard/>
           </section>
 
-          <section className="snap-start min-h-screen bg-[#10162B] flex items-center justify-center">
+          <section className="snap-start min-h-screen bg-[#0B1225] flex items-center justify-center">
             <Projects/>
           </section>
         </div>
