@@ -142,7 +142,7 @@ export default function Skills_hard() {
               Hard Skills
             </h2>
 
-            <h2 className="text-4xl font-bold mb-24 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            <h2 className="text-4xl font-bold py-2 mb-24 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
               {section.title}
             </h2>
 

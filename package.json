@@ -1,7 +1,7 @@
 {
   "name": "curriculum_vitae",
   "version": "0.1.0",
-  "homepage": "https://antoinefld.github.io/curriculum-vitae",
+  "homepage": "https://antoinefld.github.io/curriculum_vitae",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",

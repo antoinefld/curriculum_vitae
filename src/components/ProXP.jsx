@@ -16,7 +16,7 @@ export default function Exp_Pro() {
   return (
     <section id="xp_pro" className="min-h-screen flex flex-col justify-center items-center bg-[#0B1225]">
     <div className="container-section">
-      <h2 className="text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+      <h2 className="text-5xl py-2 font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
         Expérience Professionnelle
       </h2>
 
@@ -66,7 +66,7 @@ export default function Exp_Pro() {
       </motion.div>
 
 
-      <h2 className="text-4xl font-bold mb-4 mt-16 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+      <h2 className="text-4xl font-bold mb-4 py-2 mt-16 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
         • Auto-Entreprise (Mars 2024 - Juin 2024)
       </h2>
 

@@ -158,7 +158,7 @@ Automatisation de tests et intégration continue via GitHub Actions.`
             className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center snap-center bg-[#0B1225]"
           >
 
-            <h2 className="text-5xl font-bold mb-20 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            <h2 className="text-5xl font-bold py-2 mb-20 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
               Mes projets
             </h2>
 
