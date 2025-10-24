@@ -23,6 +23,8 @@ export default function Introducing() {
           <b>Erasmus</b> à Vytautas Magnus University, Kaunas, <b>Lituanie</b> (Aout 2024 - Juin 2025)
           <br />
           Je suis passionné par le  <b>développement web</b> et l’<b>automatisation des workflows</b>.
+          <br />
+          Je recherche un stage de fin d’études de 6 mois à partir du 2 mars 2026.
         </p>
         <div className="mt-10">
           <a
