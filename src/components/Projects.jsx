@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const starsarena = [
   { name: "JavaScript", desc: "Node.js, React" },
@@ -28,195 +28,174 @@ const task_manager_plus = [
 ];
 
 export default function Projects() {
-  const scrollRef = useRef(null);
-  const sectionRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const skillSections = [
-    { title: "StarsArena (2025 - En cours)", data: starsarena
-      , description: `
-      Développement d’une <b>plateforme</b> sociale de <b>compétitions musicales</b>.<br />
-Travail principalement sur le <b>backend (Node.js / Express)</b> et l’intégration <b>frontend (React)</b>.<br />
-Gestion de la <b>base de données Supabase</b> et mise en place de la <b>conteneurisation Docker</b>.<br />
-Participation à l’<b>automatisation</b> du workflow et à la configuration <b>DevOps</b> du projet` },
-    { title: "PharmaXcess (2024 - 2025)", data: pharmaxcess
-      , description: `
-      Développement d’une <b>application web</b> destinée à la <b>gestion</b> et l’<b>accès simplifié</b><br />
-      à des <b>ressources pharmaceutiques</b>.<br />
-Responsable de la <b>conteneurisation Docker</b> (frontend + backend + base PostgreSQL).<br />
-Contribution majeure sur le <b>frontend React</b> et <b>intégration des APIs</b>.<br />
-Collaboration en <b>équipe Agile</b> avec suivi sur <b>Notion</b>.`
-     },
-    { title: "TaskManagerPlus (2025 - En cours)", data: task_manager_plus
-      , description: `
-      <b>Outil DevOps</b> permettant de <b>gérer</b> et exécuter <b>automatiquement</b> des <b>tâches</b> à l’aide d’<b>agents IA</b>.<br />
-<b>Développement complet</b> du <b>frontend</b> (React), <b>backend</b> (Node.js / Express) et <b>base de données</b> MySQL.<br />
-<b>Intégration</b> d’un <b>service IA</b> (<b>Ollama</b> + modèle <b>Llama 3.2</b>) via <b>Docker Compose</b>.<br />
-Automatisation de tests et intégration continue via GitHub Actions.`
-     },
+  const projectSections = [
+    {
+      title: "TaskManagerPlus (2025 - En cours)",
+      description: `
+        <b>Outil DevOps</b> permettant de <b>gérer</b> et exécuter <b>automatiquement</b> des <b>tâches</b> à l’aide d’<b>agents IA</b>.<br />
+        <b>Intégration</b> d’un <b>service IA</b> (<b>Ollama</b> + modèle <b>Llama 3.2</b>) via <b>Docker Compose</b><br />
+        <b>Automatisation</b> de tests et <b>intégration continue</b> via GitHub Actions.<br />
+        <b>Développement complet</b> du <b>frontend</b> (React), <b>backend</b> (Node.js / Express) et <b>base de données</b> MySQL.
+      `,
+      data: task_manager_plus,
+    },
+    {
+      title: "StarsArena (2025 - En cours)",
+      description: `
+        Développement d’une <b>plateforme</b> sociale de <b>compétitions musicales</b>.<br />
+        Travail principalement sur le <b>backend (Node.js / Express)</b> et l’intégration <b>frontend (React)</b>.<br />
+        Gestion de la <b>base de données Supabase</b> et mise en place de la <b>conteneurisation Docker</b>.<br />
+        Participation à l’<b>automatisation</b> du workflow et à la configuration <b>DevOps</b> du projet
+      `,
+      data: starsarena,
+    },
+    {
+      title: "PharmaXcess (2024 - 2025)",
+      description: `
+        Développement d’une <b>application web</b> destinée à la <b>gestion</b> et l’<b>accès simplifié</b>
+        à des <b>ressources pharmaceutiques</b>.<br />
+        Responsable de la <b>conteneurisation Docker</b> (frontend + backend + base PostgreSQL).<br />
+        Contribution majeure sur le <b>frontend React</b> et <b>intégration des APIs</b>.<br />
+        Collaboration en <b>équipe Agile</b> avec suivi sur <b>Notion</b>.
+      `,
+      data: pharmaxcess,
+    }
   ];
 
-  // --- IntersectionObserver pour savoir si la section est visible à l’écran ---
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 } // visible à 30% minimum
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const [openSection, setOpenSection] = useState(-1);
+  const [showPoints, setShowPoints] = useState(false);
 
-  // --- Scroll par clic sur flèche ---
-  const scrollByScreen = (direction) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const scrollAmount = window.innerWidth;
-    el.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
 
-  // --- Gestion du drag ---
-  const startDragging = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-  const stopDragging = () => setIsDragging(false);
-  const onDrag = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1.3;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
+  const { ref: sectionRef, inView: isVisible } = useInView({
+    threshold: 0.1,
+  });
+
+  const renderProjectContent = (project) => (
+    <motion.div
+      key="content"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
+      className="w-full max-w-6xl"
+    >
+      <h2 className="text-5xl py-2 font-bold mb-16 text-left pl-16 md:pl-32 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+        {project.title}
+      </h2>
+
+      <motion.div className="w-full bg-gradient-to-br from-[#10162B] to-[#1A1F3B] border border-cyan-500/20 rounded-2xl p-6 mb-6 transition-colors duration-300 hover:border-cyan-400/70">
+        <h4 className="text-2xl font-semibold text-cyan-300 mb-3">Description</h4>
+        <p
+          className="text-gray-400 text-sm leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: project.description }}
+        />
+      </motion.div>
+
+      <button
+        onClick={() => setShowPoints(!showPoints)}
+        className="mb-4 text-cyan-300 font-semibold hover:text-cyan-400 transition flex items-center gap-2"
+      >
+        {showPoints ? "Masquer les compétences" : "Afficher les compétences"}
+        <span>{showPoints ? "▴" : "▾"}</span>
+      </button>
+
+      <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {project.data.map((skill) => (
+          <motion.div
+            key={skill.name}
+            className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B] border border-cyan-500/20 rounded-2xl p-4 text-center transition-colors duration-300 hover:border-cyan-400/70"
+          >
+            <h4 className="text-xl font-semibold text-cyan-300 mb-2">{skill.name}</h4>
+            <AnimatePresence>
+              {showPoints && (
+                <motion.p
+                  key={skill.name + "-desc"}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-gray-400 text-sm leading-relaxed"
+                >
+                  {skill.desc}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
 
   return (
-    <section
-      id="projects"
-      ref={sectionRef}
-      className="relative w-full h-screen bg-[#0B1225] flex items-center justify-center overflow-hidden"
-    >
-      {/* Flèches */}
-      {isVisible && (
-        <>
-          <motion.button
-            onClick={() => scrollByScreen("left")}
-            className="fixed left-6 top-1/2 -translate-y-1/2 z-50 
-              p-3 rounded-full bg-[#0B1225]/70 hover:bg-cyan-500/20 
-              shadow-lg transition"
-            whileHover={{ scale: 1.2 }}
-            animate={{ x: [0, -4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+    <section ref={sectionRef} className="min-h-screen flex flex-col md:flex-row bg-[#0B1225] py-16 relative">
+
+      <AnimatePresence>
+        {isVisible && openSection !== -1 && (
+          <motion.div
+            initial={{ x: -300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 100 }}
+            className="flex flex-col gap-4 px-6 py-4 fixed left-4 top-32 md:w-56 z-50 bg-[#0B1225]/70 rounded-lg shadow-lg"
           >
-            <ChevronLeft className="w-8 h-8 text-cyan-400" />
-          </motion.button>
-
-          <motion.button
-            onClick={() => scrollByScreen("right")}
-            className="fixed right-6 top-1/2 -translate-y-1/2 z-50 
-              p-3 rounded-full bg-[#0B1225]/70 hover:bg-cyan-500/20 
-              shadow-lg transition"
-            whileHover={{ scale: 1.2 }}
-            animate={{ x: [0, 4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <ChevronRight className="w-8 h-8 text-cyan-400" />
-          </motion.button>
-        </>
-      )}
-
-      {/* Effets */}
-      {isVisible && (
-        <>
-          <div className="pointer-events-none fixed top-0 left-0 w-32 h-full z-40 bg-gradient-to-r from-[#0B1225] to-transparent" />
-          <div className="pointer-events-none fixed top-0 right-0 w-32 h-full z-40 bg-gradient-to-l from-[#0B1225] to-transparent" />
-        </>
-      )}
-
-      {/* Scrolling */}
-      <div
-        ref={scrollRef}
-        onMouseDown={startDragging}
-        onMouseLeave={stopDragging}
-        onMouseUp={stopDragging}
-        onMouseMove={onDrag}
-        className={`relative w-full h-full flex 
-          overflow-x-auto overflow-y-hidden 
-          snap-x snap-mandatory scroll-smooth 
-          no-scrollbar select-none 
-          ${isDragging ? "cursor-grabbing" : "cursor-grab"}
-        `}
-      >
-        {skillSections.map((section, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center snap-center bg-[#0B1225]"
-          >
-
-            <h2 className="text-5xl font-bold py-2 mb-20 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            <h2 className="text-3xl py-4 font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
               Mes projets
             </h2>
-
-            <h2 className="text-4xl font-bold mb-16 py-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              {section.title}
-            </h2>
-
-            <div className="w-full flex flex-col items-center px-4">
-              {/* Description */}
+            {projectSections.map((project, index) => (
               <motion.div
-                key={"Description"}
-                className="w-full max-w-4xl bg-gradient-to-br from-[#10162B] to-[#1A1F3B]
-                  border border-cyan-500/20 rounded-2xl p-6 text-left 
-                  hover:border-cyan-400 transition mb-8 shadow-md"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                key={index}
+                onClick={() => setOpenSection(index)}
+                className={`cursor-pointer select-none px-2 py-1 rounded-md transition-colors ${
+                  openSection === index
+                    ? "bg-cyan-500/40 text-white"
+                    : "text-cyan-300 hover:bg-cyan-400/20"
+                }`}
+                layout
               >
-                <h3 className="text-2xl font-semibold text-cyan-300 mb-3">
-                  Description
-                </h3>
-                <p
-                  className="text-gray-400 text-sm leading-relaxed"
-                  dangerouslySetInnerHTML={{
-                    __html: section.description,
-                  }}
-                />
+                {project.title}
               </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-              {/* Grille des compétences */}
+      <div className="flex-1 flex flex-col justify-center items-start px-8">
+        <AnimatePresence>
+          {openSection !== -1
+            ? renderProjectContent(projectSections[openSection])
+            : (
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-4xl"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 50 },
-                  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } },
-                }}
+                key="intro"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="w-full max-w-6xl"
               >
-                {section.data.map((skill) => (
-                  <motion.div
-                    key={skill.name}
-                    className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B] 
-                      border border-cyan-500/20 rounded-2xl p-4 text-center 
-                      hover:border-cyan-400 transition shadow-md"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <h3 className="text-xl font-semibold text-cyan-300 mb-2">
-                      {skill.name}
-                    </h3>
-                    <p className="text-gray-400 text-sm">{skill.desc}</p>
-                  </motion.div>
-                ))}
+                <h2 className="text-5xl py-2 font-bold mb-16 pl-16 md:pl-36 text-left bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                  Mes projets
+                </h2>
+
+                {projectSections.map((project, index) => {
+                  const isOpen = openSection === index;
+                  return (
+                    <motion.div key={index} className="w-full mb-6" layout>
+                      <div
+                        className="flex items-center cursor-pointer mb-2 select-none"
+                        onClick={() => setOpenSection(index)}
+                      >
+                        <span className="mr-3 text-cyan-400 text-2xl">
+                          {isOpen ? "▾" : "▸"}
+                        </span>
+                        <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 text-left">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </motion.div>
-            </div>
-          </div>
-        ))}
+            )}
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const skills_dev = [
   { name: "Python", desc: "Django, scripts d’automatisation" },
@@ -25,161 +24,96 @@ const skills_utils = [
 ];
 
 export default function Skills_hard() {
-  const scrollRef = useRef(null);
-  const sectionRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
   const skillSections = [
     { title: "Compétences Développement", data: skills_dev },
     { title: "Compétences DevOps & Infra", data: skills_devops },
     { title: "Compétences Outils & Environnement", data: skills_utils },
   ];
 
-  // --- IntersectionObserver pour savoir si la section est visible à l’écran ---
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 } // visible à 30% minimum
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // --- Scroll par clic sur flèche ---
-  const scrollByScreen = (direction) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const scrollAmount = window.innerWidth;
-    el.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
-
-  // --- Gestion du drag ---
-  const startDragging = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-  const stopDragging = () => setIsDragging(false);
-  const onDrag = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1.3;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
+  const [openSection, setOpenSection] = useState(0);
+  const [showPoints, setShowPoints] = useState(false);
 
   return (
-    <section
-      id="skills_hard"
-      ref={sectionRef}
-      className="relative w-full h-screen bg-[#0B1225] flex items-center justify-center overflow-hidden"
-    >
-      {/* Flèches */}
-      {isVisible && (
-        <>
-          <motion.button
-            onClick={() => scrollByScreen("left")}
-            className="fixed left-6 top-1/2 -translate-y-1/2 z-50 
-              p-3 rounded-full bg-[#0B1225]/70 hover:bg-cyan-500/20 
-              shadow-lg transition"
-            whileHover={{ scale: 1.2 }}
-            animate={{ x: [0, -4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <ChevronLeft className="w-8 h-8 text-cyan-400" />
-          </motion.button>
+    <section className="min-h-screen flex flex-col justify-center items-center bg-[#0B1225] py-16">
+      <h2 className="text-5xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+        Hard Skills
+      </h2>
 
-          <motion.button
-            onClick={() => scrollByScreen("right")}
-            className="fixed right-6 top-1/2 -translate-y-1/2 z-50 
-              p-3 rounded-full bg-[#0B1225]/70 hover:bg-cyan-500/20 
-              shadow-lg transition"
-            whileHover={{ scale: 1.2 }}
-            animate={{ x: [0, 4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <ChevronRight className="w-8 h-8 text-cyan-400" />
-          </motion.button>
-        </>
-      )}
+      {skillSections.map((section, index) => {
+        const isOpen = openSection === index;
+        return (
+          <div key={index} className="w-full max-w-6xl mb-12">
 
-      {/* --- Effets de fade latéraux --- */}
-      {isVisible && (
-        <>
-          <div className="pointer-events-none fixed top-0 left-0 w-32 h-full z-40 bg-gradient-to-r from-[#0B1225] to-transparent" />
-          <div className="pointer-events-none fixed top-0 right-0 w-32 h-full z-40 bg-gradient-to-l from-[#0B1225] to-transparent" />
-        </>
-      )}
-
-      {/* --- Contenu scrollable horizontalement --- */}
-      <div
-        ref={scrollRef}
-        onMouseDown={startDragging}
-        onMouseLeave={stopDragging}
-        onMouseUp={stopDragging}
-        onMouseMove={onDrag}
-        className={`relative w-full h-full flex 
-          overflow-x-auto overflow-y-hidden 
-          snap-x snap-mandatory scroll-smooth 
-          no-scrollbar select-none 
-          ${isDragging ? "cursor-grabbing" : "cursor-grab"}
-        `}
-      >
-        {skillSections.map((section, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-screen h-full 
-              flex flex-col items-center justify-center 
-              snap-center bg-[#0B1225]"
-          >
-            <h2 className="text-5xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              Hard Skills
-            </h2>
-
-            <h2 className="text-4xl font-bold py-2 mb-24 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              {section.title}
-            </h2>
-
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-10 max-w-6xl"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { staggerChildren: 0.1 },
-                },
-              }}
+            <div
+              className="flex items-center cursor-pointer mb-4 select-none"
+              onClick={() => setOpenSection(isOpen ? -1 : index)}
             >
-              {section.data.map((skill) => (
+              <span className="mr-3 text-cyan-400 text-2xl">
+                {isOpen ? "▾" : "▸"}
+              </span>
+              <h3 className="text-3xl py-2 font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                {section.title}
+              </h3>
+            </div>
+
+
+            <AnimatePresence>
+              {isOpen && (
                 <motion.div
-                  key={skill.name}
-                  className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B] 
-                    border border-cyan-500/20 rounded-2xl p-4 text-center 
-                    hover:border-cyan-400 transition shadow-md"
-                  whileHover={{ scale: 1.05 }}
+                  key="content"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden"
                 >
-                  <h3 className="text-xl font-semibold text-cyan-300 mb-2">
-                    {skill.name}
-                  </h3>
-                  {skill.desc && (
-                    <p className="text-gray-400 text-sm">{skill.desc}</p>
-                  )}
+
+                  <button
+                    onClick={() => setShowPoints(!showPoints)}
+                    className="mb-4 text-cyan-300 font-semibold hover:text-cyan-400 transition flex items-center gap-2"
+                  >
+                    {showPoints ? "Masquer les détails" : "Afficher les détails"}
+                    <span>{showPoints ? "▴" : "▾"}</span>
+                  </button>
+
+                  <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {section.data.map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B]
+                          border border-cyan-500/20 rounded-2xl p-4 text-center
+                          transition-colors duration-300 hover:border-cyan-400/70"
+                      >
+                        <h4 className="text-xl font-semibold text-cyan-300 mb-2">
+                          {skill.name}
+                        </h4>
+                        <AnimatePresence>
+                          {showPoints && (
+                            <motion.p
+                              key={skill.name + "-desc"}
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.4 }}
+                              className="text-gray-400 text-sm leading-relaxed"
+                            >
+                              {skill.desc}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </motion.div>
-              ))}
-            </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </section>
   );
 }
