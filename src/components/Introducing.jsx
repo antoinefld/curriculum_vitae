@@ -37,34 +37,42 @@ export default function Introducing() {
             Me découvrir
           </a>
 
-          <div className="flex items-center gap-4">
-            <a
-              href="https://www.linkedin.com/in/antoine-fillaudeau-9428a3239/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2 bg-[#0B1225]/80 border border-cyan-500/40 text-cyan-300 rounded-full hover:bg-cyan-400/10 hover:text-white transition"
-            >
-              <Linkedin className="w-5 h-5" />
-              LinkedIn
-            </a>
-
-            <a
-              href="mailto:antoine.fillaudeau@epitech.eu"
-              className="flex items-center gap-2 px-6 py-2 bg-[#0B1225]/80 border border-cyan-500/40 text-cyan-300 rounded-full hover:bg-cyan-400/10 hover:text-white transition"
-            >
-              <Mail className="w-5 h-5" />
-              Contact
-            </a>
-
-            <a
-              href="https://github.com/antoinefld" // <-- Remplace par ton GitHub
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2 bg-[#0B1225]/80 border border-cyan-500/40 text-cyan-300 rounded-full hover:bg-cyan-400/10 hover:text-white transition"
-            >
-              <Github className="w-5 h-5" />
-              GitHub
-            </a>
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+            {[
+              {
+                href: "https://www.linkedin.com/in/antoine-fillaudeau-9428a3239/",
+                label: "LinkedIn",
+                icon: <Linkedin className="w-5 h-5" />,
+              },
+              {
+                href: "mailto:antoine.fillaudeau@epitech.eu",
+                label: "Email",
+                icon: <Mail className="w-5 h-5" />,
+              },
+              {
+                href: "https://github.com/antoinefld",
+                label: "GitHub",
+                icon: <Github className="w-5 h-5" />,
+              },
+            ].map((btn) => (
+              <motion.a
+                key={btn.label}
+                href={btn.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-2 bg-[#0B1225]/80 border border-cyan-500/40 text-cyan-300 rounded-full transition 0.2s"
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 0 15px rgba(0,255,255,0.6)",
+                  color: "#ffffff",
+                  transition: { duration: 0.05 }
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {btn.icon}
+                {btn.label}
+              </motion.a>
+            ))}
           </div>
         </div>
       </motion.div>
