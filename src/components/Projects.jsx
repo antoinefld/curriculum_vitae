@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const starsarena = [
-  { name: "JavaScript", desc: "Node.js, React" },
+  { name: "JavaScript", desc: "Node.js, React Native" },
   { name: "Supabase", desc: "Base de données et authentification" },
   { name: "Docker", desc: "Conteneurisation du projet complet" },
   { name: "DevOps", desc: "CI/CD, gestion des environnements" },
