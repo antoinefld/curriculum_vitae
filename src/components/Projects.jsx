@@ -12,8 +12,8 @@ const starsarena = [
 
 const pharmaxcess = [
   { name: "React", desc: "Développement du frontend" },
-  { name: "Docker", desc: "docker-compose pour front, back et PostgreSQL" },
-  { name: "PostgreSQL", desc: "Base de données conteneurisée" },
+  { name: "Docker", desc: "docker-compose pour front, back et MySQL" },
+  { name: "MySQL", desc: "Base de données conteneurisée" },
   { name: "Git", desc: "Versioning et branches collaboratives" },
   { name: "Agile", desc: "Méthodologie de travail d’équipe" },
 ];
