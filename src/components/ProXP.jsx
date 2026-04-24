@@ -2,244 +2,147 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronRight, Eye, EyeOff } from "lucide-react";
 
-const senoeeSkills = [
-  { name: "Communication", desc: "Échanges réguliers et efficaces dans un cadre agile." },
-  { name: "Rigueur", desc: "Respect des process et amélioration continue du code." },
-  { name: "Propreté du code", desc: "Intégration des bonnes pratiques de revue et de test." },
+const experiences = [
+  {
+    id: "senoee",
+    title: "Stage chez Senoee",
+    period: "Octobre 2022 – Décembre 2022",
+    description: (
+      <>
+        Développement d'<strong>API REST (Python Django)</strong>. Travail en{" "}
+        <strong>équipe agile (SCRUM)</strong> avec <strong>revues de code</strong> et{" "}
+        <strong>sprints hebdomadaires</strong>.
+      </>
+    ),
+    skills: [
+      { name: "Communication", desc: "Échanges réguliers et efficaces dans un cadre agile." },
+      { name: "Rigueur", desc: "Respect des process et amélioration continue du code." },
+      { name: "Propreté du code", desc: "Intégration des bonnes pratiques de revue et de test." },
+    ],
+  },
+  {
+    id: "auto",
+    title: "Auto-Entreprise",
+    period: "Mars 2024 – Juin 2024",
+    description: (
+      <>
+        Développement d'un <strong>projet complet</strong> (frontend + backend + base de données){" "}
+        <strong>conteneurisé</strong> avec <strong>Docker</strong>. Organisation et suivi sur{" "}
+        <strong>Jira</strong> avec un workflow inspiré de la <strong>méthode agile</strong>. Gestion
+        de projet, relation client, <strong>développement web</strong>.
+      </>
+    ),
+    skills: [
+      { name: "Autonomie", desc: "Gestion de bout en bout du projet et de son avancement." },
+      { name: "Communication client", desc: "Définition claire des besoins et feedbacks réguliers." },
+      { name: "Priorisation", desc: "Structuration du travail et respect des objectifs fixés." },
+    ],
+  },
 ];
 
-const autoSkills = [
-  { name: "Autonomie", desc: "Gestion de bout en bout du projet et de son avancement." },
-  { name: "Communication client", desc: "Définition claire des besoins et feedbacks réguliers." },
-  { name: "Priorisation", desc: "Structuration du travail et respect des objectifs fixés." },
-];
-
-export default function Exp_Pro() {
+export default function ExpPro() {
   const [openSection, setOpenSection] = useState("senoee");
-  const [showDetails, setShowDetails] = useState({
-    senoee: false,
-    auto: false,
-  });
+  const [showDetails, setShowDetails] = useState({ senoee: false, auto: false });
 
-  const toggleSection = (section) => {
-    setOpenSection((prev) => (prev === section ? null : section));
-  };
-
-  const toggleDetails = (section) => {
-    setShowDetails((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
-  };
+  const toggleSection = (id) => setOpenSection((prev) => (prev === id ? null : id));
+  const toggleDetails = (id) => setShowDetails((prev) => ({ ...prev, [id]: !prev[id] }));
 
   return (
-    <section
-      id="xp_pro"
-      className="min-h-screen flex flex-col justify-center items-center bg-[#0B1225] py-20"
-    >
-      <div className="container-section w-full max-w-6xl px-6">
-        <h2 className="text-5xl py-4 font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+    <section aria-label="Expérience Professionnelle" className="bg-[#ffffff] py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-3xl font-extrabold text-stone-900 mb-10 pb-3 border-b border-stone-200">
           Expérience Professionnelle
-        </h2>
+        </h1>
 
-
-        <div className="mb-10">
-          <div
-            className="flex items-center justify-between cursor-pointer select-none"
-            onClick={() => toggleSection("senoee")}
-          >
-            <div className="flex items-center gap-3">
-              {openSection === "senoee" ? (
-                <ChevronDown className="text-cyan-400 w-8 h-8 transition-transform" />
-              ) : (
-                <ChevronRight className="text-cyan-400 w-8 h-8 transition-transform" />
-              )}
-              <h3 className="text-3xl py-4 font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                Stage chez Senoee (Octobre 2022 - Décembre 2022)
-              </h3>
-            </div>
-
-            {openSection === "senoee" && (
-              <button
-                className="flex items-center gap-2 px-3 py-1 text-sm text-cyan-300 border border-cyan-400/30 rounded-xl hover:bg-cyan-400/10 transition"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleDetails("senoee");
-                }}
+        <div className="flex flex-col gap-4">
+          {experiences.map((exp) => {
+            const isOpen = openSection === exp.id;
+            return (
+              <div
+                key={exp.id}
+                className={`border rounded-2xl overflow-hidden transition-all ${
+                  isOpen ? "border-[#dcfbfc] shadow-sm" : "border-stone-200"
+                }`}
               >
-                {showDetails.senoee ? (
-                  <>
-                    <EyeOff className="w-4 h-4" /> Masquer détails
-                  </>
-                ) : (
-                  <>
-                    <Eye className="w-4 h-4" /> Afficher détails
-                  </>
-                )}
-              </button>
-            )}
-          </div>
-
-          <AnimatePresence>
-            {openSection === "senoee" && (
-              <motion.div
-                key="senoee-section"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                className="overflow-hidden mt-6"
-              >
-
-                <motion.div
-                  key="Description-Senoee"
-                  className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B] 
-                    border border-cyan-500/20 rounded-2xl p-6 text-center 
-                    transition mb-6 hover:border-cyan-400/70 hover:shadow-[0_0_10px_rgba(0,255,255,0.3)]"
+                <button
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-[#cff5f6] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4] focus-visible:ring-inset"
+                  onClick={() => toggleSection(exp.id)}
+                  aria-expanded={isOpen}
                 >
-                  <h3 className="text-xl font-semibold text-cyan-300 mb-2">Description</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Développement d’<b>API REST (Python Django)</b>.<br />
-                    Travail en <b>équipe agile (SCRUM)</b> avec <b>revues de code</b> et{" "}
-                    <b>sprints hebdomadaires</b>.
-                  </p>
-                </motion.div>
+                  <div>
+                    <p className="text-xl font-bold text-stone-900">{exp.title}</p>
+                    <span className="text-sm text-stone-500 font-medium">{exp.period}</span>
+                  </div>
+                  {isOpen ? (
+                    <ChevronDown className="w-5 h-5 text-[#d08838] flex-shrink-0" aria-hidden="true" />
+                  ) : (
+                    <ChevronRight className="w-5 h-5 text-stone-400 flex-shrink-0" aria-hidden="true" />
+                  )}
+                </button>
 
-
-                <h4 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                  Ce que j'ai appris
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                  {senoeeSkills.map((skill) => (
+                <AnimatePresence>
+                  {isOpen && (
                     <motion.div
-                      key={skill.name}
-                      className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B]
-                        border border-cyan-500/20 rounded-2xl p-6 text-center
-                        h-full flex flex-col justify-center
-                        transition-colors duration-300 hover:border-cyan-400/70"
+                      key={exp.id + "-body"}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35 }}
+                      className="overflow-hidden"
                     >
-                      <h3 className="text-xl font-semibold text-cyan-300 mb-2">{skill.name}</h3>
-                      <AnimatePresence>
-                        {showDetails.senoee && (
-                          <motion.p
-                            key={skill.name + "-desc"}
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="text-gray-400 text-sm leading-relaxed"
+                      <div className="px-6 pb-6 border-t border-stone-100">
+                        <p className="text-stone-600 text-sm leading-relaxed mt-4 mb-5">
+                          {exp.description}
+                        </p>
+
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="text-sm font-semibold text-stone-700">Ce que j'ai appris</h3>
+                          <button
+                            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-600 border border-stone-300 rounded-lg hover:border-[#dcfbfc] hover:text-[#0e7490] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4]"
+                            onClick={() => toggleDetails(exp.id)}
+                            aria-pressed={showDetails[exp.id]}
                           >
-                            {skill.desc}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
+                            {showDetails[exp.id] ? (
+                              <><EyeOff className="w-3.5 h-3.5" aria-hidden="true" /> Masquer</>
+                            ) : (
+                              <><Eye className="w-3.5 h-3.5" aria-hidden="true" /> Détails</>
+                            )}
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          {exp.skills.map((skill) => (
+                            <div
+                              key={skill.name}
+                              className="bg-white border border-stone-200 rounded-xl p-4 hover:border-[#dcfbfc] transition-all"
+                            >
+                              <h4 className="text-sm font-semibold text-stone-800 mb-1">
+                                {skill.name}
+                              </h4>
+                              <AnimatePresence>
+                                {showDetails[exp.id] && (
+                                  <motion.p
+                                    key={skill.name + "-desc"}
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="text-stone-500 text-xs leading-relaxed"
+                                  >
+                                    {skill.desc}
+                                  </motion.p>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-
-        <div>
-          <div
-            className="flex items-center justify-between cursor-pointer select-none"
-            onClick={() => toggleSection("auto")}
-          >
-            <div className="flex items-center gap-3">
-              {openSection === "auto" ? (
-                <ChevronDown className="text-cyan-400 w-8 h-8 transition-transform" />
-              ) : (
-                <ChevronRight className="text-cyan-400 w-8 h-8 transition-transform" />
-              )}
-              <h3 className="text-3xl py-4 font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                Auto-Entreprise (Mars 2024 - Juin 2024)
-              </h3>
-            </div>
-
-            {openSection === "auto" && (
-              <button
-                className="flex items-center gap-2 px-3 py-1 text-sm text-cyan-300 border border-cyan-400/30 rounded-xl hover:bg-cyan-400/10 transition"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleDetails("auto");
-                }}
-              >
-                {showDetails.auto ? (
-                  <>
-                    <EyeOff className="w-4 h-4" /> Masquer détails
-                  </>
-                ) : (
-                  <>
-                    <Eye className="w-4 h-4" /> Afficher détails
-                  </>
-                )}
-              </button>
-            )}
-          </div>
-
-          <AnimatePresence>
-            {openSection === "auto" && (
-              <motion.div
-                key="auto-section"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                className="overflow-hidden mt-6"
-              >
-
-                <motion.div
-                  key="Description-auto"
-                  className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B] 
-                    border border-cyan-500/20 rounded-2xl p-6 text-center 
-                    transition mb-6 hover:border-cyan-400/70 hover:shadow-[0_0_10px_rgba(0,255,255,0.3)]"
-                >
-                  <h3 className="text-xl font-semibold text-cyan-300 mb-2">Description</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Développement d’un <b>projet complet</b> (frontend + backend + base de données)
-                    <br />
-                    <b>Conteneurisé</b> avec <b>Docker</b>.<br />
-                    Organisation et suivi sur <b>Jira</b> avec un workflow inspiré de la{" "}
-                    <b>méthode agile</b>.<br />
-                    Gestion de projet, relation client, <b>développement web</b>.
-                  </p>
-                </motion.div>
-
-                <h4 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                  Ce que j'ai appris
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                  {autoSkills.map((skill) => (
-                    <motion.div
-                      key={skill.name}
-                      className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B]
-                        border border-cyan-500/20 rounded-2xl p-6 text-center
-                        h-full flex flex-col justify-center
-                        transition-colors duration-300 hover:border-cyan-400/70"
-                    >
-                      <h3 className="text-xl font-semibold text-cyan-300 mb-2">{skill.name}</h3>
-                      <AnimatePresence>
-                        {showDetails.auto && (
-                          <motion.p
-                            key={skill.name + "-desc"}
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="text-gray-400 text-sm leading-relaxed"
-                          >
-                            {skill.desc}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

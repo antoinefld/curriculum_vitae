@@ -1,201 +1,176 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { ChevronDown, ChevronRight, Eye, EyeOff } from "lucide-react";
 
-const starsarena = [
-  { name: "JavaScript", desc: "Node.js, React Native" },
-  { name: "Supabase", desc: "Base de données et authentification" },
-  { name: "Docker", desc: "Conteneurisation du projet complet" },
-  { name: "DevOps", desc: "CI/CD, gestion des environnements" },
-  { name: "GitHub", desc: "Collaboration et gestion de versions" },
+const projects = [
+  {
+    title: "TaskManagerPlus",
+    period: "2025 – En cours",
+    description: (
+      <>
+        Outil DevOps permettant de <strong>gérer</strong> et exécuter{" "}
+        <strong>automatiquement</strong> des <strong>tâches</strong> à l'aide d'
+        <strong>agents IA</strong>. Intégration d'un service IA (<strong>Ollama</strong> +{" "}
+        <strong>Llama 3.2</strong>) via <strong>Docker Compose</strong>. Automatisation des
+        tests et <strong>CI/CD</strong> via GitHub Actions. Développement complet du{" "}
+        <strong>frontend</strong> (React), <strong>backend</strong> (Node.js / Express) et
+        base de données MySQL.
+      </>
+    ),
+    skills: [
+      { name: "React", desc: "Interface utilisateur dynamique" },
+      { name: "Node.js / Express", desc: "API backend et logique serveur" },
+      { name: "MySQL", desc: "Base de données conteneurisée" },
+      { name: "Docker", desc: "Front, back, DB et service IA isolés" },
+      { name: "GitHub Actions", desc: "CI/CD et automatisation de tests" },
+      { name: "Ollama", desc: "Intégration du modèle Llama 3.2" },
+    ],
+  },
+  {
+    title: "StarsArena",
+    period: "2025 – En cours",
+    description: (
+      <>
+        Développement d'une <strong>plateforme sociale</strong> de{" "}
+        <strong>compétitions musicales</strong>. Travail sur le{" "}
+        <strong>backend (Node.js / Express)</strong> et l'intégration{" "}
+        <strong>frontend (React)</strong>. Gestion de la{" "}
+        <strong>base de données Supabase</strong> et mise en place de la{" "}
+        <strong>conteneurisation Docker</strong>. Participation à l'
+        <strong>automatisation</strong> du workflow et à la configuration <strong>DevOps</strong>.
+      </>
+    ),
+    skills: [
+      { name: "JavaScript", desc: "Node.js, React Native" },
+      { name: "Supabase", desc: "Base de données et authentification" },
+      { name: "Docker", desc: "Conteneurisation du projet complet" },
+      { name: "DevOps", desc: "CI/CD, gestion des environnements" },
+      { name: "GitHub", desc: "Collaboration et gestion de versions" },
+    ],
+  },
+  {
+    title: "PharmaXcess",
+    period: "2024 – 2025",
+    description: (
+      <>
+        Application web destinée à la <strong>gestion</strong> et l'
+        <strong>accès simplifié</strong> à des <strong>ressources pharmaceutiques</strong>.
+        Responsable de la <strong>conteneurisation Docker</strong> (frontend + backend +
+        PostgreSQL). Contribution majeure sur le <strong>frontend React</strong> et l'
+        <strong>intégration des APIs</strong>. Collaboration en{" "}
+        <strong>équipe Agile</strong> avec suivi sur <strong>Notion</strong>.
+      </>
+    ),
+    skills: [
+      { name: "React", desc: "Développement du frontend" },
+      { name: "Docker", desc: "docker-compose pour front, back et MySQL" },
+      { name: "MySQL", desc: "Base de données conteneurisée" },
+      { name: "Git", desc: "Versioning et branches collaboratives" },
+      { name: "Agile", desc: "Méthodologie de travail d'équipe" },
+    ],
+  },
 ];
 
-const pharmaxcess = [
-  { name: "React", desc: "Développement du frontend" },
-  { name: "Docker", desc: "docker-compose pour front, back et MySQL" },
-  { name: "MySQL", desc: "Base de données conteneurisée" },
-  { name: "Git", desc: "Versioning et branches collaboratives" },
-  { name: "Agile", desc: "Méthodologie de travail d’équipe" },
-];
+export default function Portfolio() {
+  const [openProject, setOpenProject] = useState(null);
+  const [showSkills, setShowSkills] = useState(false);
 
-const task_manager_plus = [
-  { name: "React", desc: "Interface utilisateur dynamique" },
-  { name: "Node.js / Express", desc: "API backend et logique serveur" },
-  { name: "MySQL", desc: "Base de données conteneurisée" },
-  { name: "Docker", desc: "Front, back, DB et service IA isolés" },
-  { name: "GitHub Actions", desc: "CI/CD et automatisation de tests" },
-  { name: "Ollama", desc: "Intégration du modèle Llama 3.2" },
-];
-
-export default function Projects() {
-  const projectSections = [
-    {
-      title: "TaskManagerPlus (2025 - En cours)",
-      description: `
-        <b>Outil DevOps</b> permettant de <b>gérer</b> et exécuter <b>automatiquement</b> des <b>tâches</b> à l’aide d’<b>agents IA</b>.<br />
-        <b>Intégration</b> d’un <b>service IA</b> (<b>Ollama</b> + modèle <b>Llama 3.2</b>) via <b>Docker Compose</b><br />
-        <b>Automatisation</b> de tests et <b>intégration continue</b> via GitHub Actions.<br />
-        <b>Développement complet</b> du <b>frontend</b> (React), <b>backend</b> (Node.js / Express) et <b>base de données</b> MySQL.
-      `,
-      data: task_manager_plus,
-    },
-    {
-      title: "StarsArena (2025 - En cours)",
-      description: `
-        Développement d’une <b>plateforme</b> sociale de <b>compétitions musicales</b>.<br />
-        Travail principalement sur le <b>backend (Node.js / Express)</b> et l’intégration <b>frontend (React)</b>.<br />
-        Gestion de la <b>base de données Supabase</b> et mise en place de la <b>conteneurisation Docker</b>.<br />
-        Participation à l’<b>automatisation</b> du workflow et à la configuration <b>DevOps</b> du projet
-      `,
-      data: starsarena,
-    },
-    {
-      title: "PharmaXcess (2024 - 2025)",
-      description: `
-        Développement d’une <b>application web</b> destinée à la <b>gestion</b> et l’<b>accès simplifié</b>
-        à des <b>ressources pharmaceutiques</b>.<br />
-        Responsable de la <b>conteneurisation Docker</b> (frontend + backend + base PostgreSQL).<br />
-        Contribution majeure sur le <b>frontend React</b> et <b>intégration des APIs</b>.<br />
-        Collaboration en <b>équipe Agile</b> avec suivi sur <b>Notion</b>.
-      `,
-      data: pharmaxcess,
-    }
-  ];
-
-  const [openSection, setOpenSection] = useState(-1);
-  const [showPoints, setShowPoints] = useState(false);
-
-
-  const { ref: sectionRef, inView: isVisible } = useInView({
-    threshold: 0.1,
-  });
-
-  const renderProjectContent = (project) => (
-    <motion.div
-      key="content"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      transition={{ duration: 0.5 }}
-      className="w-full max-w-6xl"
-    >
-      <h2 className="text-5xl py-2 font-bold mb-16 text-left pl-16 md:pl-32 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-        {project.title}
-      </h2>
-
-      <motion.div className="w-full bg-gradient-to-br from-[#10162B] to-[#1A1F3B] border border-cyan-500/20 rounded-2xl p-6 mb-6 transition-colors duration-300 hover:border-cyan-400/70">
-        <h4 className="text-2xl font-semibold text-cyan-300 mb-3">Description</h4>
-        <p
-          className="text-gray-400 text-sm leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: project.description }}
-        />
-      </motion.div>
-
-      <button
-        onClick={() => setShowPoints(!showPoints)}
-        className="mb-4 text-cyan-300 font-semibold hover:text-cyan-400 transition flex items-center gap-2"
-      >
-        {showPoints ? "Masquer les compétences" : "Afficher les compétences"}
-        <span>{showPoints ? "▴" : "▾"}</span>
-      </button>
-
-      <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {project.data.map((skill) => (
-          <motion.div
-            key={skill.name}
-            className="bg-gradient-to-br from-[#10162B] to-[#1A1F3B] border border-cyan-500/20 rounded-2xl p-4 text-center transition-colors duration-300 hover:border-cyan-400/70"
-          >
-            <h4 className="text-xl font-semibold text-cyan-300 mb-2">{skill.name}</h4>
-            <AnimatePresence>
-              {showPoints && (
-                <motion.p
-                  key={skill.name + "-desc"}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-gray-400 text-sm leading-relaxed"
-                >
-                  {skill.desc}
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-      </motion.div>
-    </motion.div>
-  );
+  const toggle = (index) => {
+    setOpenProject((prev) => (prev === index ? null : index));
+    setShowSkills(false);
+  };
 
   return (
-    <section ref={sectionRef} className="min-h-screen flex flex-col md:flex-row bg-[#0B1225] py-16 relative">
+    <section aria-label="Portfolio" className="bg-[#ffffff] py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-3xl font-extrabold text-stone-900 mb-10 pb-3 border-b border-stone-200">
+          Portfolio
+        </h1>
 
-      <AnimatePresence>
-        {isVisible && openSection !== -1 && (
-          <motion.div
-            initial={{ x: -300, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -300, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 100 }}
-            className="flex flex-col gap-4 px-6 py-4 fixed left-4 top-32 md:w-56 z-50 bg-[#0B1225]/70 rounded-lg shadow-lg"
-          >
-            <h2 className="text-3xl py-4 font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              Mes projets
-            </h2>
-            {projectSections.map((project, index) => (
-              <motion.div
+        <div className="flex flex-col gap-4">
+          {projects.map((project, index) => {
+            const isOpen = openProject === index;
+            return (
+              <div
                 key={index}
-                onClick={() => setOpenSection(index)}
-                className={`cursor-pointer select-none px-2 py-1 rounded-md transition-colors ${
-                  openSection === index
-                    ? "bg-cyan-500/40 text-white"
-                    : "text-cyan-300 hover:bg-cyan-400/20"
+                className={`border rounded-2xl overflow-hidden transition-all ${
+                  isOpen ? "border-[#dcfbfc] shadow-sm" : "border-stone-200"
                 }`}
-                layout
               >
-                {project.title}
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <button
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-[#cff5f6] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4] focus-visible:ring-inset"
+                  onClick={() => toggle(index)}
+                  aria-expanded={isOpen}
+                >
+                  <div>
+                    <p className="text-xl font-bold text-stone-900">{project.title}</p>
+                    <span className="text-sm text-stone-500 font-medium">{project.period}</span>
+                  </div>
+                  {isOpen ? (
+                    <ChevronDown className="w-5 h-5 text-[#d08838] flex-shrink-0" aria-hidden="true" />
+                  ) : (
+                    <ChevronRight className="w-5 h-5 text-stone-400 flex-shrink-0" aria-hidden="true" />
+                  )}
+                </button>
 
-      <div className="flex-1 flex flex-col justify-center items-start px-8">
-        <AnimatePresence>
-          {openSection !== -1
-            ? renderProjectContent(projectSections[openSection])
-            : (
-              <motion.div
-                key="intro"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="w-full max-w-6xl"
-              >
-                <h2 className="text-5xl py-2 font-bold mb-16 pl-16 md:pl-36 text-left bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                  Mes projets
-                </h2>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      key="project-body"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 border-t border-stone-100">
+                        <p className="text-stone-600 text-sm leading-relaxed mt-4 mb-5">
+                          {project.description}
+                        </p>
 
-                {projectSections.map((project, index) => {
-                  const isOpen = openSection === index;
-                  return (
-                    <motion.div key={index} className="w-full mb-6" layout>
-                      <div
-                        className="flex items-center cursor-pointer mb-2 select-none"
-                        onClick={() => setOpenSection(index)}
-                      >
-                        <span className="mr-3 text-cyan-400 text-2xl">
-                          {isOpen ? "▾" : "▸"}
-                        </span>
-                        <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 text-left">
-                          {project.title}
-                        </h3>
+                        <button
+                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-600 border border-stone-300 rounded-lg hover:border-[#dcfbfc] hover:text-[#0e7490] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4] mb-4"
+                          onClick={() => setShowSkills(!showSkills)}
+                          aria-pressed={showSkills}
+                        >
+                          {showSkills ? (
+                            <><EyeOff className="w-3.5 h-3.5" aria-hidden="true" /> Masquer les compétences</>
+                          ) : (
+                            <><Eye className="w-3.5 h-3.5" aria-hidden="true" /> Voir les compétences</>
+                          )}
+                        </button>
+
+                        <AnimatePresence>
+                          {showSkills && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex flex-wrap gap-2">
+                                {project.skills.map((skill) => (
+                                  <span
+                                    key={skill.name}
+                                    title={skill.desc}
+                                    className="px-3 py-1 bg-[#edfefe] border border-[#dcfbfc] text-[#155e75] text-xs font-medium rounded-full"
+                                  >
+                                    {skill.name}
+                                  </span>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     </motion.div>
-                  );
-                })}
-              </motion.div>
-            )}
-        </AnimatePresence>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
