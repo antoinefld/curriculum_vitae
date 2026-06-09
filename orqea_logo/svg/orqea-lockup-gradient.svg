@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140" fill="none">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"></stop><stop offset="100%" stop-color="#38BDF8"></stop></linearGradient></defs>
+<g transform="translate(20,20)">
+  <circle cx="50" cy="50" r="34" stroke="url(#g)" stroke-width="1.5" opacity="0.3"></circle>
+  <line x1="22" y1="78" x2="78" y2="22" stroke="url(#g)" stroke-width="5" stroke-linecap="round"></line>
+  <circle cx="78" cy="22" r="5" fill="url(#g)"></circle>
+  <circle cx="50" cy="50" r="11" fill="url(#g)"></circle>
+  <circle cx="22" cy="50" r="3.5" fill="url(#g)"></circle>
+  <circle cx="50" cy="86" r="3.5" fill="url(#g)"></circle>
+  <circle cx="86" cy="62" r="3.5" fill="url(#g)" opacity="0.7"></circle>
+</g>
+<text x="155" y="93" font-family="&#39;Space Grotesk&#39;, system-ui, sans-serif" font-weight="600" font-size="78" letter-spacing="-1" fill="#0B0B12">orqea</text>
+</svg>

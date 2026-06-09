@@ -1,54 +1,57 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import './App.css';
-import './index.css';
+import './styles/portfolio.css';
+import { useScrollReveal, useScrollNavigation, useCardGlow } from './hooks/useAnimations';
 
-import Navbar from "./components/Navbar";
-import Introducing from "./components/Introducing";
-import SkillsHard from "./components/Skills_hard";
-import SkillsSoft from "./components/Skills_soft";
-import Projects from "./components/Projects";
-import ExpPro from "./components/ProXP";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Expertise from "./components/Expertise";
+import Technologies from "./components/Technologies";
+import FeaturedProject from "./components/FeaturedProject";
+import Experience from "./components/Experience";
+import Certifications from "./components/Certifications";
+import Languages from "./components/Languages";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-  const mainRef = useRef(null);
+  useScrollReveal();
+  useScrollNavigation();
+  useCardGlow();
 
-  // Move focus to main content on page change (WCAG 2.4.3)
   useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.focus();
-    }
-  }, [currentPage]);
+    const root = document.documentElement;
+    root.style.setProperty('--hue', '285');
+    root.setAttribute('data-fonts', 'editorial');
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#ffffff]">
-      {/* Skip-to-content link for keyboard users (WCAG 2.4.1) */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#0e7490] focus:text-white focus:rounded-md focus:font-medium focus:text-sm"
-      >
-        Aller au contenu principal
+    <>
+      <div className="bg-field" />
+      <div className="bg-grid" />
+      <div className="bg-noise" />
+
+      <a href="#main-content" className="sr-only">
+        Skip to main content
       </a>
 
-      <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Header />
 
-      <main
-        id="main-content"
-        ref={mainRef}
-        tabIndex={-1}
-        className="outline-none"
-      >
-        {currentPage === "home" && (
-          <>
-            <Introducing />
-            <SkillsSoft />
-            <SkillsHard />
-          </>
-        )}
-        {currentPage === "portfolio" && <Projects />}
-        {currentPage === "experience" && <ExpPro />}
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Expertise />
+        <Technologies />
+        <FeaturedProject />
+        <Experience />
+        <Certifications />
+        <Languages />
+        <Contact />
       </main>
-    </div>
+
+      <Footer />
+    </>
   );
 }
 

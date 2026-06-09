@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Orqea — Brand exports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#0B0B12; --paper:#F6F5F1; --violet:#7C3AED; --blue:#38BDF8; --muted:#7a7a85;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#0B0B12;color:#e9e9ee;font-family:'Inter',system-ui,sans-serif;padding:48px 56px;}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:48px;margin:0 0 8px;letter-spacing:-.02em}
+  h1 span{background:linear-gradient(135deg,var(--violet),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .lead{opacity:.7;max-width:680px;line-height:1.6;margin:0 0 40px}
+  h2{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin:48px 0 20px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px}
+  .grid{display:grid;gap:14px}
+  .grid-fav{grid-template-columns:repeat(7,1fr)}
+  .grid-mark{grid-template-columns:repeat(4,1fr)}
+  .grid-lock{grid-template-columns:repeat(2,1fr)}
+  .tile{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;}
+  .tile.light{background:#fff;border-color:rgba(0,0,0,.08)}
+  .tile.violet{background:#7C3AED;border-color:transparent}
+  .tile .frame{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:6px;}
+  .tile.lock .frame{aspect-ratio:480/140}
+  .tile img{max-width:80%;max-height:80%;}
+  .tile .meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.55;letter-spacing:.05em}
+  .tile.light .meta{color:#0B0B12}
+  .tile.violet .meta{color:#fff;opacity:.75}
+  a{color:#38BDF8;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:24px}
+  .pill{font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.15);opacity:.85}
+  .pill.gr{background:linear-gradient(135deg,var(--violet),var(--blue));border-color:transparent;color:#fff;opacity:1}
+</style>
+</head>
+<body>
+
+<h1>Orqea — <span>Conductor Axis</span></h1>
+<p class="lead">All exports for the chosen mark (CO2 · Conductor Axis). Vector SVGs are master files — scale infinitely. PNGs are pre-rasterized at common sizes for convenience.</p>
+
+<div class="row">
+  <span class="pill gr">Gradient · #7C3AED → #38BDF8</span>
+  <span class="pill">Ink · #0B0B12</span>
+  <span class="pill">White · #FFFFFF</span>
+  <span class="pill">Violet · #7C3AED</span>
+</div>
+
+<h2>Vector / SVG masters</h2>
+<div class="grid grid-mark">
+  <div class="tile"><div class="frame"><img src="svg/orqea-mark-gradient.svg"/></div><div class="meta"><span>mark · gradient</span><a href="svg/orqea-mark-gradient.svg" download>SVG</a></div></div>
+  <div class="tile"><div class="frame"><img src="svg/orqea-mark-white.svg"/></div><div class="meta"><span>mark · white</span><a href="svg/orqea-mark-white.svg" download>SVG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="svg/orqea-mark-ink.svg"/></div><div class="meta"><span>mark · ink</span><a href="svg/orqea-mark-ink.svg" download>SVG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="svg/orqea-mark-violet.svg"/></div><div class="meta"><span>mark · violet</span><a href="svg/orqea-mark-violet.svg" download>SVG</a></div></div>
+
+  <div class="tile lock"><div class="frame"><img src="svg/orqea-lockup-gradient-dark.svg"/></div><div class="meta"><span>lockup · gradient (dark bg)</span><a href="svg/orqea-lockup-gradient-dark.svg" download>SVG</a></div></div>
+  <div class="tile lock light"><div class="frame"><img src="svg/orqea-lockup-gradient.svg"/></div><div class="meta"><span>lockup · gradient (light bg)</span><a href="svg/orqea-lockup-gradient.svg" download>SVG</a></div></div>
+  <div class="tile lock light"><div class="frame"><img src="svg/orqea-lockup-ink.svg"/></div><div class="meta"><span>lockup · ink</span><a href="svg/orqea-lockup-ink.svg" download>SVG</a></div></div>
+  <div class="tile lock"><div class="frame"><img src="svg/orqea-lockup-white.svg"/></div><div class="meta"><span>lockup · white</span><a href="svg/orqea-lockup-white.svg" download>SVG</a></div></div>
+</div>
+
+<h2>Favicon · 16 / 32 / 48 / 64 / 128 / 256 / 512 px</h2>
+<div class="grid grid-fav">
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-16.png"/></div><div class="meta"><span>16</span><a href="png/favicon/orqea-favicon-gradient-16.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-32.png"/></div><div class="meta"><span>32</span><a href="png/favicon/orqea-favicon-gradient-32.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-48.png"/></div><div class="meta"><span>48</span><a href="png/favicon/orqea-favicon-gradient-48.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-64.png"/></div><div class="meta"><span>64</span><a href="png/favicon/orqea-favicon-gradient-64.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-128.png"/></div><div class="meta"><span>128</span><a href="png/favicon/orqea-favicon-gradient-128.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-256.png"/></div><div class="meta"><span>256</span><a href="png/favicon/orqea-favicon-gradient-256.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-gradient-512.png"/></div><div class="meta"><span>512</span><a href="png/favicon/orqea-favicon-gradient-512.png" download>PNG</a></div></div>
+
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-16.png"/></div><div class="meta"><span>ink 16</span><a href="png/favicon/orqea-favicon-ink-16.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-32.png"/></div><div class="meta"><span>ink 32</span><a href="png/favicon/orqea-favicon-ink-32.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-48.png"/></div><div class="meta"><span>ink 48</span><a href="png/favicon/orqea-favicon-ink-48.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-64.png"/></div><div class="meta"><span>ink 64</span><a href="png/favicon/orqea-favicon-ink-64.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-128.png"/></div><div class="meta"><span>ink 128</span><a href="png/favicon/orqea-favicon-ink-128.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-256.png"/></div><div class="meta"><span>ink 256</span><a href="png/favicon/orqea-favicon-ink-256.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/favicon/orqea-favicon-ink-512.png"/></div><div class="meta"><span>ink 512</span><a href="png/favicon/orqea-favicon-ink-512.png" download>PNG</a></div></div>
+
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-16.png"/></div><div class="meta"><span>white 16</span><a href="png/favicon/orqea-favicon-white-16.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-32.png"/></div><div class="meta"><span>white 32</span><a href="png/favicon/orqea-favicon-white-32.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-48.png"/></div><div class="meta"><span>white 48</span><a href="png/favicon/orqea-favicon-white-48.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-64.png"/></div><div class="meta"><span>white 64</span><a href="png/favicon/orqea-favicon-white-64.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-128.png"/></div><div class="meta"><span>white 128</span><a href="png/favicon/orqea-favicon-white-128.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-256.png"/></div><div class="meta"><span>white 256</span><a href="png/favicon/orqea-favicon-white-256.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/favicon/orqea-favicon-white-512.png"/></div><div class="meta"><span>white 512</span><a href="png/favicon/orqea-favicon-white-512.png" download>PNG</a></div></div>
+</div>
+
+<h2>Mark · 256 / 512 / 1024 / 2048 px</h2>
+<div class="grid grid-mark">
+  <div class="tile light"><div class="frame"><img src="png/mark/orqea-mark-gradient-512.png"/></div><div class="meta"><span>gradient 512</span><a href="png/mark/orqea-mark-gradient-512.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/mark/orqea-mark-ink-512.png"/></div><div class="meta"><span>ink 512</span><a href="png/mark/orqea-mark-ink-512.png" download>PNG</a></div></div>
+  <div class="tile"><div class="frame"><img src="png/mark/orqea-mark-white-512.png"/></div><div class="meta"><span>white 512</span><a href="png/mark/orqea-mark-white-512.png" download>PNG</a></div></div>
+  <div class="tile light"><div class="frame"><img src="png/mark/orqea-mark-violet-512.png"/></div><div class="meta"><span>violet 512</span><a href="png/mark/orqea-mark-violet-512.png" download>PNG</a></div></div>
+</div>
+<p style="opacity:.55;font-size:12px;margin-top:8px">Other sizes available in <span style="font-family:'JetBrains Mono',monospace">exports/png/mark/</span> · 256, 1024, 2048</p>
+
+<h2>Lockup · 480 / 960 / 1440 / 2400 px</h2>
+<div class="grid grid-lock">
+  <div class="tile lock light"><div class="frame"><img src="png/lockup/orqea-lockup-gradient-light-960.png"/></div><div class="meta"><span>gradient · light bg</span><a href="png/lockup/orqea-lockup-gradient-light-960.png" download>PNG</a></div></div>
+  <div class="tile lock"><div class="frame"><img src="png/lockup/orqea-lockup-gradient-dark-960.png"/></div><div class="meta"><span>gradient · dark bg</span><a href="png/lockup/orqea-lockup-gradient-dark-960.png" download>PNG</a></div></div>
+  <div class="tile lock light"><div class="frame"><img src="png/lockup/orqea-lockup-ink-960.png"/></div><div class="meta"><span>ink (mono dark)</span><a href="png/lockup/orqea-lockup-ink-960.png" download>PNG</a></div></div>
+  <div class="tile lock"><div class="frame"><img src="png/lockup/orqea-lockup-white-960.png"/></div><div class="meta"><span>white (mono light)</span><a href="png/lockup/orqea-lockup-white-960.png" download>PNG</a></div></div>
+</div>
+<p style="opacity:.55;font-size:12px;margin-top:8px">Other sizes available in <span style="font-family:'JetBrains Mono',monospace">exports/png/lockup/</span> · 480, 1440, 2400</p>
+
+</body>
+</html>
