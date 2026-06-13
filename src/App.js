@@ -9,9 +9,11 @@ import About from "./components/About";
 import Expertise from "./components/Expertise";
 import Technologies from "./components/Technologies";
 import FeaturedProject from "./components/FeaturedProject";
+import Architecture from "./components/Architecture";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
 import Languages from "./components/Languages";
+import CurrentFocus from "./components/CurrentFocus";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -44,9 +46,11 @@ function App() {
         <Expertise />
         <Technologies />
         <FeaturedProject />
+        <Architecture />
         <Experience />
         <Certifications />
         <Languages />
+        <CurrentFocus />
         <Contact />
       </main>
 

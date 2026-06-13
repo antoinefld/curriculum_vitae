@@ -1,8 +1,8 @@
 export const content = {
   hero: {
-    eyebrow: "Software Engineer · Automation · Cloud · AI",
+    eyebrow: "Software Engineer · AI Systems · Cloud Architecture",
     subheading:
-      "From software delivery pipelines to AI-powered workflows, I automate repetitive work — so teams can focus on what actually creates value.",
+      "Currently working on enterprise software at Capgemini while building Orqea and documenting architecture decisions through System Design Notes.",
     status: "Available for work",
     cta: {
       primary: "View projects",
@@ -13,13 +13,13 @@ export const content = {
   about: {
     eyebrow: "About",
     body1:
-      "My work sits where good architecture meets reliable delivery: automated pipelines, cloud infrastructure, and AI agents that remove the manual toil between idea and production. The common thread is always the same — automate the work so teams can focus on what actually creates value.",
+      "This interest led me to work across several domains: AI agents and context engineering, cloud infrastructure and deployment strategies, authentication and security systems, CI/CD automation and platform engineering, and observability and monitoring architectures.",
     body2:
-      "I deliver software engineering and automation projects inside an enterprise environment at Capgemini, and I build my own systems on the side — most recently Orqea, a platform that automates the software delivery lifecycle. That mix keeps me close to both rigor and velocity: enterprise-grade reliability with a builder's bias for shipping.",
+      "Alongside my work at Capgemini, I am building Orqea — an AI-native workflow orchestration platform — and documenting architecture decisions through my System Design Notes repository. Together, these projects allow me to explore both enterprise software engineering and modern AI platform design.",
     highlights: [
-      { label: "Automation", desc: "Removing repetitive work across delivery & ops" },
-      { label: "Cloud · DevOps", desc: "CI/CD, containers & Google Cloud delivery" },
-      { label: "AI · Agents", desc: "Context engineering & workflow orchestration" },
+      { label: "AI Systems", desc: "Agents, context engineering & orchestration" },
+      { label: "Cloud Architecture", desc: "Infrastructure, deployment & observability" },
+      { label: "DevOps Automation", desc: "CI/CD, platform engineering & delivery" },
     ],
   },
 
@@ -33,7 +33,7 @@ export const content = {
     },
     {
       num: "02",
-      title: "Cloud & DevOps",
+      title: "Cloud Architecture & Platform Engineering",
       description:
         "Infrastructure as code, containerized workloads and CI/CD pipelines with real observability — repeatable environments that deploy themselves.",
       tags: ["Docker", "Kubernetes", "GitHub Actions", "CI/CD", "Google Cloud", "Cloud Run", "Cloud SQL"],
@@ -47,10 +47,10 @@ export const content = {
     },
     {
       num: "04",
-      title: "AI Automation",
+      title: "AI Systems Engineering",
       description:
         "AI agents and context engineering applied to real workflows — orchestrating the manual steps between intent and shipped software.",
-      tags: ["AI agents", "Context engineering", "RAG", "Orchestration"],
+      tags: ["AI Agents", "Context Engineering", "RAG Systems", "Workflow Orchestration"],
     },
   ],
 
@@ -65,7 +65,7 @@ export const content = {
   orqea: {
     eyebrow: "Featured project",
     tagline:
-      "A workflow orchestration platform designed to automate the software delivery lifecycle.",
+      "An AI-native workflow orchestration platform that turns requests into reviewed, deployable pull requests through context-aware AI execution.",
     description:
       "Orqea orchestrates AI agents inside your real engineering context — repos, pipelines, and integrations — so work flows from request to reviewed pull request without manual handoffs.",
     features: [
@@ -85,9 +85,9 @@ export const content = {
       company: "Capgemini",
       role: "Software Engineering Intern",
       points: [
-        "Delivered software engineering work across enterprise business applications, from design through to production.",
-        "Built automation that removed manual, repetitive work from delivery and operations workflows.",
-        "Worked within enterprise standards for quality, accessibility and maintainability on client-facing systems.",
+        "Contributed to the design and implementation of an enterprise project estimation platform.",
+        "Worked across system architecture, authentication & security (Keycloak, OAuth2, OIDC), accessibility (WCAG/RGAA), data modelling, and technical documentation.",
+        "Delivered within enterprise engineering standards while collaborating across teams on software delivery processes.",
       ],
     },
     {
@@ -132,15 +132,15 @@ export const content = {
 
   languages: [
     { code: "FR", name: "French", level: "Native · C2", score: 5 },
+    { code: "DE", name: "German", level: "Intermediate · B2", score: 3 },
     { code: "EN", name: "English", level: "Professional · B2", score: 3 },
-    { code: "DE", name: "German", level: "Intermediate · B1", score: 2 },
-    { code: "LT", name: "Lithuanian", level: "Basics · A1", score: 1 },
     { code: "RU", name: "Russian", level: "Basics · A1", score: 1 },
+    { code: "LT", name: "Lithuanian", level: "Basics · A1", score: 1 },
   ],
 
   contact: {
     subheading:
-      "Have a workflow to automate, a pipeline to streamline, or an AI-powered system to build? I'm open to internships, full-time roles and relocation to Switzerland.",
+      "Have an AI system to design, a cloud architecture to plan, or a delivery pipeline to automate? I'm open to full-time roles and relocation to Switzerland.",
     email: "fillaudeau.antoine@gmail.com",
     links: {
       email: "mailto:fillaudeau.antoine@gmail.com",

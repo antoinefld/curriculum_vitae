@@ -212,8 +212,11 @@ section { position: relative; }
 }
 .hero-centered h1 {
   font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(38px, 5.4vw, 66px); line-height: 1.04;
-  letter-spacing: -0.025em; max-width: 17ch;
+  font-size: clamp(38px, 5.4vw, 66px); line-height: 1.08;
+  letter-spacing: -0.025em; max-width: 22ch;
+}
+@media (min-width: 880px) {
+  .hero-centered h1 { max-width: 26ch; }
 }
 .hero .lead { color: var(--muted); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; max-width: 52ch; margin-inline: auto; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
@@ -390,6 +393,19 @@ section { position: relative; }
 .lvl-bar { display: flex; gap: 5px; margin-top: auto; }
 .lvl-bar i { height: 4px; flex: 1; border-radius: 100px; background: var(--line-strong); display: block; }
 .lvl-bar i.on { background: var(--accent); }
+
+/* Current focus */
+.focus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+@media (max-width: 760px) { .focus-grid { grid-template-columns: 1fr; } }
+.focus-card { padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+.focus-card .focus-arrow {
+  width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
+  background: var(--accent-soft); border: 1px solid oklch(0.62 0.20 var(--hue)/0.22);
+  color: var(--accent-bright); margin-bottom: 6px;
+}
+.focus-card .focus-arrow svg { width: 18px; height: 18px; }
+.focus-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
+.focus-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
 
 /* Contact */
 .contact { text-align: center; }

@@ -9,8 +9,8 @@ export default function Contact() {
       <div className="wrap">
         <span className="eyebrow reveal" style={{ justifyContent: 'center' }}>Contact</span>
         <h2 className="big reveal d1">
-          Let's automate something<br />
-          worth <span className="serif-em">building</span>.
+          Let's build something<br />
+          worth <span className="serif-em">shipping</span>.
         </h2>
         <p className="reveal d2">{contact.subheading}</p>
         <div className="contact-actions reveal d2">

@@ -9,7 +9,7 @@ export default function Footer() {
           <span>Antoine&nbsp;Fillaudeau</span>
         </div>
         <div className="copy">
-          &copy; 2026 &middot; Software Engineer &middot; Automation &middot; Cloud &middot; AI
+          &copy; 2026 &middot; Software Engineer &middot; AI Systems &middot; Cloud Architecture &middot; DevOps Automation
         </div>
         <div className="socials">
           <a href="https://github.com/antoinefld" target="_blank" rel="noopener noreferrer" aria-label="GitHub">

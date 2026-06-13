@@ -32,8 +32,8 @@ export default function FeaturedProject() {
                 <span className="status">{orqea.status}</span>
               </div>
 
-              <h3>Workflow orchestration for engineering teams</h3>
-              <p className="tagline">// Ship code, not tasks.</p>
+              <h3>AI-native workflow orchestration platform</h3>
+              <p className="tagline">// From request to reviewed pull request through context-aware AI execution.</p>
               <p>{orqea.description}</p>
 
               <div className="hero-ctas" style={{ marginTop: 4 }}>

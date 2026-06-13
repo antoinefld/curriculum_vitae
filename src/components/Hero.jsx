@@ -13,8 +13,8 @@ export default function Hero() {
           <span className="eyebrow reveal">{hero.eyebrow}</span>
 
           <h1 className="reveal d1">
-            I build systems that{" "}
-            <span className="serif-em">automate work</span>.
+            Building AI-native systems that combine{" "}
+            <span className="serif-em">intelligent agents, cloud infrastructure and software delivery automation.</span>
           </h1>
 
           <p className="lead reveal d2">{hero.subheading}</p>
@@ -40,7 +40,7 @@ export default function Hero() {
               <Flag code="CH" />
               Open to Switzerland
             </span>
-            <span className="pill">Cloud &bull; DevOps &bull; Automation &bull; AI</span>
+            <span className="pill">AI Systems &bull; Cloud Architecture &bull; DevOps Automation</span>
           </div>
         </div>
       </div>

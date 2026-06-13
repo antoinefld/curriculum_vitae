@@ -11,10 +11,14 @@ export default function About() {
           <div>
             <span className="eyebrow reveal">{about.eyebrow}</span>
             <p className="about-lede reveal d1" style={{ marginTop: 20 }}>
-              A software engineer whose common thread is{" "}
-              <span className="serif-em">automation</span> &mdash; building
-              systems that take repetitive work off people&rsquo;s plates,
-              across software delivery and AI-powered workflows.
+              A software engineer focused on the intersection of{" "}
+              <span className="serif-em">AI systems</span>,{" "}
+              <span className="serif-em">cloud architecture</span> and{" "}
+              <span className="serif-em">software delivery</span>.
+            </p>
+            <p className="about-lede reveal d1" style={{ marginTop: 12, fontSize: '0.95em', opacity: 0.85 }}>
+              My work explores a simple question: how can intelligent systems automate
+              engineering workflows while remaining reliable, observable and scalable?
             </p>
             <div className="about-body">
               <p className="reveal d1">{about.body1}</p>

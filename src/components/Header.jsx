@@ -5,8 +5,10 @@ const NAV_LINKS = [
   { label: "Expertise", href: "#expertise" },
   { label: "Technologies", href: "#technologies" },
   { label: "Work", href: "#work" },
+  { label: "Architecture", href: "#architecture" },
   { label: "Experience", href: "#experience" },
   { label: "Languages", href: "#languages" },
+  { label: "Focus", href: "#focus" },
 ];
 
 export default function Header() {
